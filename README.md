@@ -15,7 +15,7 @@ open a cursor
 connection =pymysql.connect(host="localhost",
                                             user = "root",
                                             password="199288Lj",
-                                            database="法国激活imei")
+                                            database="aleDateDetail")
 
 cursor =connection.cursor()
 ```
@@ -32,15 +32,15 @@ def  ImportActivationFile(FilePath):
 
 
 
-使用ImportActivationFile function获得excel 数据源中的数据
+Use the ImportActivationFile function to get data from an excel data source
 ```
 def  ImportActivationFile(FilePath):
     print(excel_sheet.sheet_names())
     for sh in excel_sheet.sheet_names():
         table = excel_sheet.sheet_by_name(sh)
 
-    # excel 列顺序
-    #imei	是否激活	激活时间	入库时间	入库库位	入库单号	出库时间	出库库位	出库单号	最终客户	激活国家	激活省	激活城市	SKU编码	SKU名称	物料编码	营销机型	颜色
+    # Order of columns Excel 
+    #imei	Activated 	Activated Time 	Inbound Time	 Inbound locaiton 	Stock No. 	Outbound Time	 Outbound warehouse	Dispatch Note  Number 	Final customer  	country	Province  	City 	 SKU Code	SKU Name	Material Code 	Marketing Model	Colour
 
     j =1
     for i in range(0,table.ncols):
@@ -50,34 +50,34 @@ def  ImportActivationFile(FilePath):
     for j in range(0,table.nrows):
 
         imei = table.cell(j,0).value
-        是否激活= table.cell(j,1).value
-        激活时间= table.cell(j,2).value
-        入库时间= table.cell(j,3).value
-        入库库位= table.cell(j,4).value
-        入库单号= table.cell(j,5).value
-        出库时间= table.cell(j,6).value
-        出库库位= table.cell(j,7).value
-        出库单号= table.cell(j,8).value
-        最终客户= table.cell(j,9).value
-        激活国家= table.cell(j,10).value
-        激活省= table.cell(j,11).value
-        激活城市= table.cell(j,12).value
-        SKU编码= table.cell(j,13).value
-        SKU名称= table.cell(j,14).value
-        物料编码= table.cell(j,15).value
-        营销机型= table.cell(j,16).value
-        颜色= table.cell(j,17).value
+        Activated= table.cell(j,1).value
+        Activated Time= table.cell(j,2).value
+        Inbound Time= table.cell(j,3).value
+        Inbound locaiton= table.cell(j,4).value
+        Stock No.= table.cell(j,5).value
+        Outbound Time = table.cell(j,6).value
+        Outbound warehouse = table.cell(j,7).value
+        Dispatch Note = table.cell(j,8).value
+        Final customer = table.cell(j,9).value
+        country = table.cell(j,10).value
+        Province= table.cell(j,11).value
+        City = table.cell(j,12).value
+        SKU Code = table.cell(j,13).value
+        SKU Name = table.cell(j,14).value
+        Material Code= table.cell(j,15).value
+        Marketing Mode = table.cell(j,16).value
+        Colour = table.cell(j,17).value
 
-        Activation_Range_Value=(imei,是否激活,激活时间,入库时间,入库库位,入库单号,出库时间,出库库位,出库单号,最终客户,激活国家,激活省,激活城市,SKU编码,SKU名称,物料编码,营销机型,颜色)
+        Activation_Range_Value=(imei,Activated, Activated Time,Inbound Time,Inbound locaiton,Stock No.,Outbound Time,Outbound warehouse,Dispatch Note, Final customer,country,Province,City,SKU Code,SKU Name,Material Code,Marketing Mode,Colour)
  ```
  
  
- 使用SQL insert 插入mysql 数据库
+Insert into a mysql database 
  
  ```
       insert_query = '''
-        Insert into 法国激活imei.法国激活2022imei(
-        imei,是否激活,激活时间,入库时间,入库库位,入库单号,出库时间,出库库位,出库单号,最终客户,激活国家,激活省,激活城市,SKU编码,SKU名称,物料编码,营销机型,颜色
+        Insert into SaleDate.SaleDateDetail(
+        imei,Activated, Activated Time,Inbound Time,Inbound locaiton,Stock No.,Outbound Time,Outbound warehouse,Dispatch Note, Final customer,country,Province,City,SKU Code,SKU Name,Material Code,Marketing Mode,Colour
         )
         values(
         %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s
