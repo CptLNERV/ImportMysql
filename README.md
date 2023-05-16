@@ -1,4 +1,4 @@
-# ImportMysql
+# Use PythonScript ImportMysql
 
 Purpose: This script is for batch processing of huge sales data (500k+), direct use of this amount of data, direct use of the visualisation tool would result in very long loading times (up to several hours) or direct error reporting  
 Solution: Use the Python script to import the original sales data into Mysql data and use sql in the visualisation tool to get the data needed
